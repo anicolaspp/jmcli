@@ -1,6 +1,7 @@
 package com.github.anicolasp.mapr.cli.volume
 
 import com.github.anicolasp.mapr.cli.client.MapRCLI.Auth
+import com.github.anicolasp.mapr.cli.entries.Entry
 import com.github.anicolasp.mapr.cli.runnable.{RunnableCommand, RunnableQuery}
 
 trait VolumeEntry {
@@ -15,25 +16,17 @@ trait VolumeEntry {
 
 object VolumeEntry {
 
-  def apply(host: String, auth: Option[Auth]): VolumeEntry = new VolumeEntry {
+  def apply(host: String, auth: Option[Auth]): VolumeEntry = new VolumeE(host, auth)
 
-    private val baseUrl = s"${host}/rest/volume"
-
-    private def getUrl(end: String) = s"${baseUrl}/end"
+  class VolumeE(host: String, auth: Option[Auth]) extends Entry(s"${host}/rest/volume") with VolumeEntry {
 
     override def list(): RunnableQuery = RunnableQuery(getUrl("list"), auth)
 
-    override def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand = {
-      val params = List(("name", name)) ++ args
+    override def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand =
+      RunnableCommand(getUrl("create"), auth, ("name", name) :: args.toList)
 
-      RunnableCommand(getUrl("create"), auth, params)
-    }
-
-    override def mount(name: String, path: String): RunnableCommand = {
-      val params = List(("name", name), ("path", path))
-
-      RunnableCommand(getUrl("mount"), auth, params)
-    }
+    override def mount(name: String, path: String): RunnableCommand =
+      RunnableCommand(getUrl("mount"), auth, List(("name", name), ("path", path)))
 
     override def unmount(name: String, force: Boolean): RunnableCommand = {
       val params = List(("name", name), ("force", if (force) "1" else "0"))

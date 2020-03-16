@@ -8,7 +8,6 @@ object MapRCLI {
 
   def withHost(host: String): Client = MapRCliClient(host, None)
 
-
   case class Auth(user: String, pass: String)
 
   case class MapRCliClient(host: String, auth: Option[Auth]) extends Client {
@@ -18,7 +17,7 @@ object MapRCLI {
 
     override def stream(): StreamEntry = ???
 
-    override def table(): TableEntry = ???
+    override def table(): TableEntry = TableEntry(host, auth)
   }
 
 }
