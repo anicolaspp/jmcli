@@ -19,8 +19,15 @@ object TableEntry {
   def apply(host: String, auth: Option[Auth]): TableEntry = new TableE(host, auth)
 
   class TableE(host: String, auth: Option[Auth]) extends Entry(s"${host}/rest/table") with TableEntry {
-    override def create(path: String, args: Iterable[(String, String)]): RunnableCommand =
-      RunnableCommand(getUrl("create"), auth, ("path", path) :: args.toList)
+    override def create(path: String, args: Iterable[(String, String)]): RunnableCommand = {
+      val toArgs = if (!args.toMap.contains("tabletype")){
+        ("tabletype", "json") :: args.toList
+      } else {
+        args.toList
+      }
+
+      RunnableCommand(getUrl("create"), auth, ("path", path) :: toArgs)
+    }
 
     override def delete(path: String): RunnableCommand =
       RunnableCommand(getUrl("delete"), auth, List(("path", path)))
