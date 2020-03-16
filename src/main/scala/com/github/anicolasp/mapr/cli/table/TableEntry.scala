@@ -7,13 +7,15 @@ import com.github.anicolasp.mapr.cli.runnable.{RunnableCommand, RunnableQuery}
 trait TableEntry {
   def create(path: String, args: (String, String)*): RunnableCommand
 
-  def delete(path: String): RunnableCommand
+  def cf(): TableCFEntry
 
-  def info(path: String): RunnableQuery
+  def delete(path: String): RunnableCommand
 
   def edit(path: String, args: (String, String)*)
 
-  def cf(): TableCFEntry
+  def info(path: String): RunnableQuery
+
+  def region(): TableRegionEntry
 }
 
 
@@ -35,7 +37,9 @@ object TableEntry {
       RunnableCommand(getUrl("delete"), auth, ("path", path))
 
     override def info(path: String): RunnableQuery =
-      RunnableQuery(getUrl("info"), auth, List(("path", path)))
+      RunnableQuery(getUrl("info"), auth, ("path", path))
+
+    override def region(): TableRegionEntry = TableRegionEntry(host, auth)
 
     override def edit(path: String, args: (String, String)*): Unit =
       RunnableCommand("edit", auth, ("path", path) :: args.toList: _*)
