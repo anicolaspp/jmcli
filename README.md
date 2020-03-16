@@ -26,3 +26,17 @@ val createTable = client
 
 createTable.runAsync()
 ```
+
+Listing column families on table will look like this:
+
+```scala
+val cfQuery = client
+ .table()
+ .cf()
+ .list("/user/mytable")
+ 
+cdQuery.run()
+
+```
+
+
