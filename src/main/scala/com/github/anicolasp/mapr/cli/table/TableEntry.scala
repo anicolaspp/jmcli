@@ -11,6 +11,8 @@ trait TableEntry {
 
   def info(path: String): RunnableQuery
 
+  def edit(path: String, args: Iterable[(String, String)])
+
   def cf(): TableCFEntry
 }
 
@@ -20,7 +22,7 @@ object TableEntry {
 
   class TableE(host: String, auth: Option[Auth]) extends Entry(s"${host}/rest/table") with TableEntry {
     override def create(path: String, args: Iterable[(String, String)]): RunnableCommand = {
-      val toArgs = if (!args.toMap.contains("tabletype")){
+      val toArgs = if (!args.toMap.contains("tabletype")) {
         ("tabletype", "json") :: args.toList
       } else {
         args.toList
@@ -34,6 +36,9 @@ object TableEntry {
 
     override def info(path: String): RunnableQuery =
       RunnableQuery(getUrl("info"), auth, List(("path", path)))
+
+    override def edit(path: String, args: Iterable[(String, String)]): Unit =
+      RunnableCommand("edit", auth, ("path", path) :: args.toList)
 
     override def cf(): TableCFEntry = TableCFEntry(host, auth)
   }
