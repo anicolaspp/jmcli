@@ -8,16 +8,14 @@ trait RunnableCommand {
 }
 
 object RunnableCommand {
-  def apply(url: String, auth: Option[Auth], params: Iterable[(String, String)] = Iterable.empty): RunnableCommand = new RunnableCommand {
-    override def run(): Response = {
-      val (user, pass) = auth.map(x => (x.user, x.pass)).getOrElse(("", ""))
+  def apply(url: String, auth: Option[Auth], params: Iterable[(String, String)] = Iterable.empty): RunnableCommand = () => {
+    val (user, pass) = auth.map(x => (x.user, x.pass)).getOrElse(("", ""))
 
-      requests
-        .post(url,
-          RequestAuth.implicitBasic(user, pass),
-          params,
-          verifySslCerts = false
-        )
-    }
+    requests
+      .post(url,
+        RequestAuth.implicitBasic(user, pass),
+        params,
+        verifySslCerts = false
+      )
   }
 }
