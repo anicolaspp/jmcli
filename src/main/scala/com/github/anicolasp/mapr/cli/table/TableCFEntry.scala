@@ -16,7 +16,8 @@ object TableCFEntry {
     override def list(path: String, cfname: Option[String] = None): RunnableQuery = {
       val args = ("path", path) :: cfname.map(name => List(("cfname", name))).getOrElse(Nil)
 
-      RunnableQuery(getUrl("list"), auth, args)
+      RunnableQuery(getUrl("list"), auth, args: _*)
     }
   }
+
 }

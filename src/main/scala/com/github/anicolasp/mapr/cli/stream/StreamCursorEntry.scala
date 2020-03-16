@@ -1,5 +1,7 @@
 package com.github.anicolasp.mapr.cli.stream
 
+import com.github.anicolasp.mapr.cli.client.MapRCLI.Auth
+import com.github.anicolasp.mapr.cli.entries.Entry
 import com.github.anicolasp.mapr.cli.runnable.{RunnableCommand, RunnableQuery}
 
 trait StreamCursorEntry {
