@@ -10,7 +10,10 @@ trait TableEntry {
   def delete(path: String): RunnableCommand
 
   def info(path: String): RunnableQuery
+
+  def cf(): TableCFEntry
 }
+
 
 object TableEntry {
   def apply(host: String, auth: Option[Auth]): TableEntry = new TableE(host, auth)
@@ -24,6 +27,8 @@ object TableEntry {
 
     override def info(path: String): RunnableQuery =
       RunnableQuery(getUrl("info"), auth, List(("path", path)))
+
+    override def cf(): TableCFEntry = TableCFEntry(host, auth)
   }
 
 }
