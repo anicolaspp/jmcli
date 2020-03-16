@@ -139,8 +139,8 @@ import com.github.anicolasp.mapr.cli.runnable.RunnableQuery;
 
 public class App {
     public static void main(String[] args) {
-        Client client = MapRCLI.
-                withHost("https://<api server ip>:8443")
+        Client client = MapRCLI
+                .withHost("https://<api server ip>:8443")
                 .withAuth("user", "pass");
 
         RunnableQuery query = client.volume().list();
