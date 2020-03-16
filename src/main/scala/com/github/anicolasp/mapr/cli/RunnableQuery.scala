@@ -1,18 +1,19 @@
 package com.github.anicolasp.mapr.cli
 
-import requests.Response
+import com.github.anicolasp.mapr.cli.MapRCLI.Auth
+import requests.{RequestAuth, Response}
 
-trait RunnableCommand {
+trait RunnableQuery {
   def run(): Response
 }
 
-object RunnableCommand {
-  def apply(url: String, auth: Option[Auth], params: Iterable[(String, String)] = Iterable.empty): RunnableCommand = new RunnableCommand {
+object RunnableQuery {
+  def apply(url: String, auth: Option[Auth], params: Iterable[(String, String)] = Iterable.empty): RunnableQuery = new RunnableQuery {
     override def run(): Response = {
       val (user, pass) = auth.map(x => (x.user, x.pass)).getOrElse(("", ""))
 
       requests
-        .post(url,
+        .get(url,
           RequestAuth.implicitBasic(user, pass),
           params,
           verifySslCerts = false

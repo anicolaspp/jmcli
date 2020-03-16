@@ -6,7 +6,7 @@ import org.scalatest.FlatSpec
 import org.scalatest.matchers.should.Matchers
 
 
-class VolumeTest extends FlatSpec with Matchers{
+class VolumeTest extends FlatSpec with Matchers {
 
   "volume list" should "return all volumes" in {
 
@@ -17,7 +17,22 @@ class VolumeTest extends FlatSpec with Matchers{
 
     val volumeListCommand = client.volume().list()
 
-    println(volumeListCommand.run())
+    val response = volumeListCommand.run()
 
+    response.statusCode should be(200)
+
+    ujson.read(response.text())("data").arr.size should not be 0
+  }
+
+  it should "create volume with name" in {
+    val client = MapRCLI
+      .withHost("https://172.20.60.107:8443")
+      .withAuth("msapp", "msrules!")
+
+    val volumeCreate = client.volume().create("npereztest")
+
+    val response = volumeCreate.run()
+
+    response.statusCode should be (200)
   }
 }
