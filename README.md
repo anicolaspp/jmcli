@@ -126,6 +126,16 @@ The following is the list of available entry points.
 
 We will continue adding more soon. 
 
+## Sync and Async Commands 
+
+All APIs presented in this library run `synchronously`. However, we can run the `asynchronously` by importing the `com.github.anicolasp.mapr.cli.runnable.Async`. The following snippet shows an example. 
+
+```scala
+import com.github.anicolasp.mapr.cli.runnable.Async._
+
+client.volume().list().runAsync().foreach(list => doSomeThing(list))
+```
+
 ## Java 
 
 When using java, this libray uses the exact same API. The following shows a simple example. 
