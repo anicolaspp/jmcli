@@ -7,7 +7,7 @@ import com.github.anicolasp.mapr.cli.runnable.{RunnableCommand, RunnableQuery}
 trait VolumeEntry {
   def list(): RunnableQuery
 
-  def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand
+  def create(name: String, args: (String, String)*): RunnableCommand
 
   def mount(name: String, path: String): RunnableCommand
 
@@ -22,16 +22,16 @@ object VolumeEntry {
 
     override def list(): RunnableQuery = RunnableQuery(getUrl("list"), auth)
 
-    override def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand =
-      RunnableCommand(getUrl("create"), auth, ("name", name) :: args.toList)
+    override def create(name: String, args: (String, String)*): RunnableCommand =
+      RunnableCommand(getUrl("create"), auth, ("name", name) :: args.toList: _*)
 
     override def mount(name: String, path: String): RunnableCommand =
-      RunnableCommand(getUrl("mount"), auth, List(("name", name), ("path", path)))
+      RunnableCommand(getUrl("mount"), auth, ("name", name), ("path", path))
 
     override def unmount(name: String, force: Boolean): RunnableCommand = {
       val params = List(("name", name), ("force", if (force) "1" else "0"))
 
-      RunnableCommand(getUrl("unmount"), auth, params)
+      RunnableCommand(getUrl("unmount"), auth, params: _*)
     }
   }
 

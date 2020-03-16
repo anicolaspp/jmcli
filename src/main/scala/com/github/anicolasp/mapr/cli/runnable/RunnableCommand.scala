@@ -8,7 +8,7 @@ trait RunnableCommand {
 }
 
 object RunnableCommand {
-  def apply(url: String, auth: Option[Auth], params: Iterable[(String, String)] = Iterable.empty): RunnableCommand = () => {
+  def apply(url: String, auth: Option[Auth], params: (String, String)*): RunnableCommand = () => {
     val (user, pass) = auth.map(x => (x.user, x.pass)).getOrElse(("", ""))
 
     requests

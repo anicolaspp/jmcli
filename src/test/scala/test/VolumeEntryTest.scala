@@ -44,7 +44,7 @@ class VolumeEntryTest extends FlatSpec with Matchers {
 
     val volumeCreate = client
       .volume()
-      .create("npereztest", List(("path", "/user/npereztest")))
+      .create("npereztest", ("path", "/user/npereztest"))
 
     val response = volumeCreate.run()
 
