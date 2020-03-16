@@ -15,7 +15,7 @@ object MapRCLI {
 
     override def volume(): VolumeEntry = VolumeEntry(host, auth)
 
-    override def stream(): StreamEntry = ???
+    override def stream(): StreamEntry = StreamEntry()
 
     override def table(): TableEntry = TableEntry(host, auth)
   }
