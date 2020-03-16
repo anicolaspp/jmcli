@@ -7,7 +7,7 @@ import com.github.anicolasp.mapr.cli.MapRCLI.Auth
 trait Volume {
   def list(): RunnableQuery
 
-  def create(name: String): RunnableCommand
+  def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand
 }
 
 object Volume {
@@ -19,10 +19,10 @@ object Volume {
       RunnableQuery(url, auth)
     }
 
-    override def create(name: String): RunnableCommand = {
+    override def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand = {
       val url = host + "/rest/volume/create"
 
-      val params = List(("name", name))
+      val params = List(("name", name)) ++ args
 
       RunnableCommand(url, auth, params)
     }

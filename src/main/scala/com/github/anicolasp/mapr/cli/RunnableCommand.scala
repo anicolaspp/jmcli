@@ -1,6 +1,7 @@
 package com.github.anicolasp.mapr.cli
 
-import requests.Response
+import com.github.anicolasp.mapr.cli.MapRCLI.Auth
+import requests.{RequestAuth, Response}
 
 trait RunnableCommand {
   def run(): Response

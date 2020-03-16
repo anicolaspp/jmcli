@@ -35,4 +35,18 @@ class VolumeTest extends FlatSpec with Matchers {
 
     response.statusCode should be (200)
   }
+
+  it should "create and mount the volume" in {
+    val client = MapRCLI
+      .withHost("https://172.20.60.107:8443")
+      .withAuth("msapp", "msrules!")
+
+    val volumeCreate = client
+      .volume()
+      .create("npereztest", List(("path", "/user/npereztest")))
+
+    val response = volumeCreate.run()
+
+    response.statusCode should be (200)
+  }
 }
