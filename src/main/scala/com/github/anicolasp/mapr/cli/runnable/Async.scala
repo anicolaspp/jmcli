@@ -1,4 +1,4 @@
-package com.github.anicolasp.mapr.cli
+package com.github.anicolasp.mapr.cli.runnable
 
 import requests.Response
 

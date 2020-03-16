@@ -2,11 +2,12 @@ package com.github.anicolasp.mapr.cli
 package test
 
 
+import com.github.anicolasp.mapr.cli.client.MapRCLI
 import org.scalatest.FlatSpec
 import org.scalatest.matchers.should.Matchers
 
 
-class VolumeTest extends FlatSpec with Matchers {
+class VolumeEntryTest extends FlatSpec with Matchers {
 
   "volume list" should "return all volumes" in {
 

@@ -1,6 +1,6 @@
-package com.github.anicolasp.mapr.cli
+package com.github.anicolasp.mapr.cli.runnable
 
-import com.github.anicolasp.mapr.cli.MapRCLI.Auth
+import com.github.anicolasp.mapr.cli.client.MapRCLI.Auth
 import requests.{RequestAuth, Response}
 
 trait RunnableQuery {

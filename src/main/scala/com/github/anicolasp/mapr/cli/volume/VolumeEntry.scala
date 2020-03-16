@@ -1,10 +1,9 @@
-package com.github.anicolasp.mapr.cli
+package com.github.anicolasp.mapr.cli.volume
 
-import java.net.URLEncoder
+import com.github.anicolasp.mapr.cli.client.MapRCLI.Auth
+import com.github.anicolasp.mapr.cli.runnable.{RunnableCommand, RunnableQuery}
 
-import com.github.anicolasp.mapr.cli.MapRCLI.Auth
-
-trait Volume {
+trait VolumeEntry {
   def list(): RunnableQuery
 
   def create(name: String, args: Iterable[(String, String)] = Iterable.empty): RunnableCommand
@@ -14,9 +13,9 @@ trait Volume {
   def unmount(name: String, force: Boolean): RunnableCommand
 }
 
-object Volume {
+object VolumeEntry {
 
-  def apply(host: String, auth: Option[Auth]): Volume = new Volume {
+  def apply(host: String, auth: Option[Auth]): VolumeEntry = new VolumeEntry {
 
     private val baseUrl = s"${host}/rest/volume"
 
