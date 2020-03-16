@@ -125,3 +125,39 @@ The following is the list of available entry points.
 - `stream topic list`
 
 We will continue adding more soon. 
+
+## Java 
+
+When using java, this libray uses the exact same API. The following shows a simple example. 
+
+```java 
+package com.github.anicolasp.test;
+
+import com.github.anicolasp.mapr.cli.client.Client;
+import com.github.anicolasp.mapr.cli.client.MapRCLI;
+import com.github.anicolasp.mapr.cli.runnable.RunnableQuery;
+
+public class App {
+    public static void main(String[] args) {
+        Client client = MapRCLI.
+                withHost("https://<api server ip>:8443")
+                .withAuth("user", "pass");
+
+        RunnableQuery query = client.volume().list();
+
+       query.run();
+    }
+}
+```
+
+## Linking
+
+You can get this library from Maven Central using the following snippet.
+
+```xml
+<dependency>
+ <groupId>com.github.anicolaspp</groupId>
+ <artifactId>jmcli_2.13</artifactId>
+ <version>1.0.0</version>
+</dependency>
+```
