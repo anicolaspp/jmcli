@@ -176,6 +176,25 @@ public class App {
 }
 ```
 
+## Addition APIs Configurations
+
+The entry points that `jmcli` offers require only the arguments that the `mapcli` requires. Any addition parameter can also be passed, but we do not force it. 
+
+The following example shows that we can create a volume and provide the requiered paramenters but we can also add more arguments that can be passed to the corresponding API call. 
+
+```scala
+client.volume().create("myvol").run()          // creates volume with name `myvol`
+
+client
+ .volume()
+ .create("myvol", ("path", "/user/mounthere"))
+ .run()                                       // creates volume with name `myvol` and mounts it at `/user/mounthere`
+```
+
+Any optional parameter is passed in the form of tuples `(String, String)` with the name of the parameter and the value we want to pass in. 
+
+All possible arguments are fully described in the [MapR Documentation](https://mapr.com/docs/61/ReferenceGuide/maprcli-REST-API-Syntax.html).
+
 ## Linking
 
 You can get this library from Maven Central using the following snippet.
