@@ -1,5 +1,5 @@
 # jmcli
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/ojai-testing_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.12)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.12)
 
 A JVM based CLI for MapR
 
