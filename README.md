@@ -1,5 +1,5 @@
 # jmcli
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.12)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.13)
 
 A JVM based CLI for MapR
 
@@ -184,6 +184,6 @@ You can get this library from Maven Central using the following snippet.
 <dependency>
  <groupId>com.github.anicolaspp</groupId>
  <artifactId>jmcli_2.13</artifactId>
- <version>1.0.0</version>
+ <version>x.y.z</version>
 </dependency>
 ```
