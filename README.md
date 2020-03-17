@@ -1,5 +1,5 @@
 # jmcli
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.anicolaspp/jmcli_2.13)[![Build Status](https://travis-ci.org/anicolaspp/jmcli.svg?branch=master)](https://travis-ci.org/anicolaspp/jmcli)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.anicolaspp/jmcli_2.13.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.anicolaspp%22%20AND%20a:%22jmcli_2.13%22)[![Build Status](https://travis-ci.org/anicolaspp/jmcli.svg?branch=master)](https://travis-ci.org/anicolaspp/jmcli)
 
 A JVM based CLI for MapR
 
