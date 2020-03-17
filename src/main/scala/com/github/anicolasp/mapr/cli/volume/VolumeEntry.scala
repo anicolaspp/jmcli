@@ -12,6 +12,19 @@ trait VolumeEntry {
   def mount(name: String, path: String): RunnableCommand
 
   def unmount(name: String, force: Boolean): RunnableCommand
+
+  def info(name: String): RunnableQuery
+
+  def snapshot(): VolumeSnapshotEntry
+
+  def modify(name: String, args: (String, String)*): RunnableCommand
+
+  def remove(name: String, force: Boolean): RunnableCommand
+
+  def rename(name: String, newName: String): RunnableCommand
+
+  def showMounts(name: String): RunnableQuery
+
 }
 
 object VolumeEntry {
@@ -33,6 +46,24 @@ object VolumeEntry {
 
       RunnableCommand(getUrl("unmount"), auth, params: _*)
     }
+
+    override def info(name: String): RunnableQuery =
+      RunnableQuery(getUrl("info"), auth, ("name", name))
+
+    override def snapshot(): VolumeSnapshotEntry = VolumeSnapshotEntry(host, auth)
+
+    override def modify(name: String, args: (String, String)*): RunnableCommand =
+      RunnableCommand(getUrl("modify"), auth, ("name", name) :: args.toList: _*)
+
+    override def remove(name: String, force: Boolean): RunnableCommand =
+      RunnableCommand(getUrl("remove"), auth, ("name", name), ("force", if (force) "1" else "0"))
+
+    override def rename(name: String, newName: String): RunnableCommand =
+      RunnableCommand(getUrl("rename"), auth, ("name", name), ("newname", newName))
+
+    override def showMounts(name: String): RunnableQuery =
+      RunnableQuery(getUrl("showmounts"), auth, ("name", name))
   }
 
 }
+

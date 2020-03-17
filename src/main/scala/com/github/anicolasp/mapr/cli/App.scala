@@ -10,11 +10,13 @@ object App {
 
     val client = MapRCLI
       .withHost("https://172.20.60.107:8443")
-      .withAuth("user", "mypass")
+      .withAuth("msapp", "msrules!")
 
+    val mounts = client.volume().showMounts("users")
 
+    println(client.volume().snapshot().list(("volume", "mms")).run().text())
 
-
+    println(mounts.run().text())
   }
 
 }

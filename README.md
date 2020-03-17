@@ -60,9 +60,24 @@ val unmount = client.volume().unmount("nperez")
 
 mount.run()
 unmount.run()
-```
+```              
 
 In the current version of `jmcli` we are providing access to only some of the possible APIs. We are going to be adding more as the library evolves. 
+
+The following is the available `volume` APIs.
+
+- `volume list`
+- `volume create`
+- `volume mount`
+- `volume unmount`
+- `volume info`
+- `volume snapshot list`
+- `volume snapshot create`
+- `volume snapshot remove`
+- `volume modify`
+- `volume remove`
+- `volume rename`
+- `volume showmounts`
 
 ## Managing Tables
 
